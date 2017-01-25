@@ -5,8 +5,12 @@
     @include flex-container-content-centered;
     @include flex-container-alignment-centered;
 
-    height: 80px;
+    height: 60px;
     background-color: rgba(0,0,0,.16);
+
+    @include larger-than-mobile {
+        height: 80px;
+    }
 
     div#logo {
         width: 108px;
