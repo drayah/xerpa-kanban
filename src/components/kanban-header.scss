@@ -4,6 +4,7 @@
     @include flex-container-horizontal;
     @include flex-container-content-centered;
     @include flex-container-alignment-centered;
+    @include flex-shrink(0);
 
     height: 60px;
     background-color: rgba(0,0,0,.16);
