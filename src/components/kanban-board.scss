@@ -1,0 +1,10 @@
+@import "~shared/_mixins.scss";
+
+#kanban-board {
+    @include debug(purple);
+    @include flex-grow;
+
+    @include larger-than-mobile {
+        @include debug(green);
+    }
+}
