@@ -122,6 +122,12 @@
     flex-grow: $grow;
 }
 
+@mixin flex-shrink($shrink: 1) {
+    /* flex items shrink by default, so use value 0 to have them NOT shrink */
+    -webkit-flex-shrink: $shrink;
+    flex-shrink: $shrink;
+}
+
 @mixin flex-basis($basis: auto) {
     -webkit-flex-basis: $basis;
     flex-basis: $basis;
