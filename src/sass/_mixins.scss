@@ -1,0 +1,195 @@
+/*
+ * Define mixins for flexbox, background gradients, linear transitions etc.
+ */
+
+/*
+ * debug 
+ */
+@mixin debug($color: red, $size: 1px) {
+    border: $size solid $color !important;
+}
+
+/*
+ * media queries 
+ */
+@mixin larger-than-mobile {
+    @media (min-width: 640px) {
+        @content;
+    }
+}
+
+@mixin larger-than-tablet {
+    @media (min-width: 1280px) {
+        @content;
+    }
+}
+
+@mixin larger-than-desktop {
+    @media (min-width: 1920px) {
+        @content;
+    }
+}
+
+/* 
+ * box sizing 
+ */
+@mixin border-box-sizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@mixin content-box-sizing {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+/*
+ * flexbox 
+ */
+@mixin flex-container-horizontal {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+}
+
+@mixin flex-container-vertical {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+}
+
+@mixin flex-container {
+    display: flex;
+    display: -webkit-flex;
+}
+
+@mixin flex-container-inline {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+@mixin flex-container-horizontal-reversed {
+    flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+}
+
+@mixin flex-container-content-start {
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+}
+
+@mixin flex-container-content-end {
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+}
+
+@mixin flex-container-content-centered {
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+@mixin flex-container-content-space-between {
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+@mixin flex-container-content-space-around {
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+
+@mixin flex-container-alignment-centered {
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+@mixin flex-container-alignment-stretched {
+    -webkit-align-items: stretch;
+    align-items: stretch;
+}
+
+@mixin flex-container-wrap {
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+@mixin flex-grow($grow: 1) {
+    -webkit-flex-grow: $grow;
+    flex-grow: $grow;
+}
+
+@mixin flex-basis($basis: auto) {
+    -webkit-flex-basis: $basis;
+    flex-basis: $basis;
+}
+
+/*
+ * placeholder color
+ */
+@mixin placeholder($color) {
+    &::-webkit-input-placeholder {
+       color: $color;
+    }
+
+    &:-moz-placeholder { /* Firefox 18- */
+       color: $color;  
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+       color: $color;  
+    }
+
+    &:-ms-input-placeholder {  
+       color: $color;  
+    }
+}
+
+/*
+ * 2-color linear gradient 
+ */
+@mixin linear-gradient-ab($colorA, $colorB, $direction: top) {  
+    background-image: -webkit-linear-gradient(
+        $direction,
+        $colorA,
+        $colorB
+    );
+
+    background-image: -moz-linear-gradient(
+        $direction,
+        $colorA,
+        $colorB
+    );
+
+    background-image: -ms-linear-gradient(
+        $direction,
+        $colorA,
+        $colorB
+    );
+
+    background-image: -o-linear-gradient(
+        $direction,
+        $colorA,
+        $colorB
+    );
+
+    background-image: linear-gradient(
+        $direction,
+        $colorA,
+        $colorB
+    );
+}
+
+/*
+ * single property transition
+ */
+@mixin single-property-transition($property, $duration, $timing: linear) {
+    -webkit-transition: $property $duration $timing;
+    -moz-transition: $property $duration $timing;
+    -o-transition: $property $duration $timing;
+    -ms-transition: $property $duration $timing;
+    transition: $property $duration $timing;
+}
