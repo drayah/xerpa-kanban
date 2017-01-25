@@ -6,6 +6,10 @@
     font-family: "Open Sans", sans-serif;
 }
 
+* {
+    @include border-box-sizing;
+}
+
 html, body {
     height: 100%;
 }
