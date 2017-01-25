@@ -1,0 +1,12 @@
+@import "~shared/_mixins.scss";
+
+#kanban-footer {
+    @include flex-container-horizontal;
+    @include flex-container-content-centered;
+    @include flex-container-alignment-centered;
+
+    height: 40px;
+    color: rgba(255,255,255,.5);
+    background-color: rgba(0,0,0,.16);
+    font-size: 12px;
+}
