@@ -1,10 +1,82 @@
 @import "~shared/_mixins.scss";
 
 #kanban-board {
-    @include debug(purple);
     @include flex-grow;
+    @include flex-container-horizontal;
+    @include flex-container-alignment-stretched;
 
-    @include larger-than-mobile {
-        @include debug(green);
+    @mixin shrink-none {
+        @include flex-shrink(0);
+    }
+
+    @mixin shrink {
+        @include flex-shrink(1);
+    }
+
+    $spacing: 40px;
+
+    padding: $spacing;
+    overflow-x: auto;
+
+    div.column-container {
+        //1-col on mobile
+        @include shrink-none;
+        @include flex-container-vertical;
+
+        @include larger-than-mobile {
+            //2-cols on tablet
+            width: calc(50% - #{($spacing / 2)});
+        }
+
+        @include larger-than-tablet {
+            //3-cols on desktop
+            @include shrink;
+        }
+
+        width: 100%;
+        padding: 20px;
+        border-radius: 4px;
+        background-color: rgb(240,240,240);
+        box-shadow: 0px 2px 6px rgba(0,0,0,.2);
+
+        header.column-header {
+            font: {
+                weight: 700;
+                size: 18px;
+            }
+
+            color: rgb(98,93,99);
+            margin-bottom: 10px;
+        }
+
+        footer.column-footer {
+            background-color: rgb(200,200,200);
+        }
+        
+        section {
+            @include flex-grow;
+
+            overflow-y: auto;
+        }
+
+        &:not(:last-child) {
+            margin-right: $spacing;
+        }
+    }
+    
+    //we need an extra element after the last column
+    //on mobile/tablet, since we're overflowing horizontally 
+    //we need to force some extra width to fake the 
+    //padding on the container
+    &:after {
+        @include shrink-none;
+
+        display: block;
+        width: $spacing;
+        content: "";
+
+        @include larger-than-tablet {
+            display: none;
+        }
     }
 }
