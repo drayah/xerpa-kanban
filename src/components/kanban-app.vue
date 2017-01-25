@@ -6,16 +6,16 @@
 -->
 <template>
     <div id="kanban-container">
-        this is my kanban app {{msg}}
+        <kanban-header></kanban-header>
     </div>
 </template>
 
 <script>
+import KanbanHeader from './kanban-header.vue'
+
 export default {
-    data() {
-        return {
-            msg: 'Welcome to Your Vue.js App'
-        }
+    components: {
+        KanbanHeader
     }
 }
 </script>

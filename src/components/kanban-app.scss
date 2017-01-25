@@ -1,5 +1,8 @@
 @import "~shared/_mixins.scss";
 
 #kanban-container {
-    @include debug(pink);
+    @include flex-container-vertical;
+
+    height: 100%;
+    background-color: rgb(103,123,209);
 }

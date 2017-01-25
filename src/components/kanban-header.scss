@@ -1,0 +1,16 @@
+@import "~shared/_mixins.scss";
+
+#kanban-header {
+    @include flex-container-horizontal;
+    @include flex-container-content-centered;
+    @include flex-container-alignment-centered;
+
+    height: 80px;
+    background-color: rgba(0,0,0,.16);
+
+    div#logo {
+        width: 108px;
+        height: 20px;
+        background-image: url("../assets/xerpa.png")
+    }
+}
