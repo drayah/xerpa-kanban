@@ -1,0 +1,23 @@
+/*
+ * Global application styles
+ */
+
+@mixin default-font {
+    font-family: "Open Sans", sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    @include default-font;
+    
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+        @include default-font;
+    }
+}
