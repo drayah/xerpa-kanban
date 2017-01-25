@@ -1,0 +1,5 @@
+@import "~shared/_mixins.scss";
+
+#kanban-container {
+    @include debug(pink);
+}
