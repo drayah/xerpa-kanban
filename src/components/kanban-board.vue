@@ -5,53 +5,33 @@
 -->
 <template>
     <main id="kanban-board">
-        <div class="column-wrapper">
-            <div class="column-container">
-                <header class="column-header">Para executar</header>
-                <section>
-                        test
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                        <p>section bla bla</p>
-                </section>
-                <footer class="column-footer">foot</footer>
-            </div>
-        </div><div class="column-wrapper">
-            <div class="column-container">
-                <header class="column-header">Column 2</header>
+        <kanban-list header="Para executar"></kanban-list>
+        <kanban-list header="Em andamento"></kanban-list>
+        <kanban-list header="Finalizado"></kanban-list>
+        <!--        
+        <div class="list-wrapper">
+            <div class="list-container">
+                <header class="list-header">Column 2</header>
                 <section>
                     <p>abc</p>
                     <p>abc</p>
                     <p>abc</p>
                 </section>
-                <footer class="column-footer">foot</footer>
-            </div>
-        </div><div class="column-wrapper">
-            <div class="column-container">
-                <header class="column-header">Column 3</header>
-                <section>
-                    sample
-                </section>
-                <footer class="column-footer">foot</footer>
+                <footer class="list-footer">foot</footer>
             </div>
         </div>
+        -->
     </main>
 </template>
+
+<script>
+import KanbanList from './kanban-list.vue'
+
+export default {
+    components: {
+        KanbanList
+    }
+}
+</script>
 
 <style lang="scss" src="./kanban-board.scss"></style>
