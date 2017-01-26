@@ -29,7 +29,9 @@
                     <p>section bla bla</p>
                     <p>section bla bla</p>
             </section>
-            <footer class="list-footer">footer here</footer>
+            <footer class="list-footer">
+                <button>Adicionar...</button>
+            </footer>
         </div>
     </div>
 </template>
