@@ -2,81 +2,69 @@
 
 #kanban-board {
     @include flex-grow;
-    @include flex-container-horizontal;
-    @include flex-container-alignment-stretched;
-
-    @mixin shrink-none {
-        @include flex-shrink(0);
-    }
-
-    @mixin shrink {
-        @include flex-shrink(1);
-    }
 
     $spacing: 40px;
 
-    padding: $spacing;
+    height: 100%;
+    white-space: nowrap;
     overflow-x: auto;
 
-    div.column-container {
-        //1-col on mobile
-        @include shrink-none;
-        @include flex-container-vertical;
+    padding: {
+        top: $spacing;
+        bottom: $spacing;
+        left: $spacing / 2;
+        right: $spacing / 2;
+    }
+
+    div.column-wrapper {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(100% - #{$spacing});
+        height: 100%;
+        max-height: 100%;
+
+        margin: {
+            left: $spacing / 2;
+            right: $spacing / 2;
+        }
 
         @include larger-than-mobile {
-            //2-cols on tablet
-            width: calc(50% - #{($spacing / 2)});
+            //display 2 cols
+            width: calc(50% - #{$spacing});
         }
 
         @include larger-than-tablet {
-            //3-cols on desktop
-            @include shrink;
+            //display 3 cols
+            width: calc(33.333% - #{$spacing});
         }
+    }
 
-        width: 100%;
-        padding: 20px;
+    div.column-container {
+        @include flex-container-vertical;
+
+        max-height: 100%;
         border-radius: 4px;
         background-color: rgb(240,240,240);
         box-shadow: 0px 2px 6px rgba(0,0,0,.2);
+        overflow: auto;
 
         header.column-header {
+            padding: 10px;
+            color: rgb(98,93,99);
+
             font: {
                 weight: 700;
                 size: 18px;
             }
-
-            color: rgb(98,93,99);
-            margin-bottom: 10px;
         }
 
         footer.column-footer {
             background-color: rgb(200,200,200);
+            padding: 5px;
         }
         
         section {
-            @include flex-grow;
-
             overflow-y: auto;
-        }
-
-        &:not(:last-child) {
-            margin-right: $spacing;
-        }
-    }
-    
-    //we need an extra element after the last column
-    //on mobile/tablet, since we're overflowing horizontally 
-    //we need to force some extra width to fake the 
-    //padding on the container
-    &:after {
-        @include shrink-none;
-
-        display: block;
-        width: $spacing;
-        content: "";
-
-        @include larger-than-tablet {
-            display: none;
         }
     }
 }
