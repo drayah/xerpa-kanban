@@ -1,9 +1,10 @@
-@import "~shared/_mixins.scss";
+@import "~shared/_mixins";
+@import "~shared/_theme";
 
 #kanban-board {
     @include flex-grow;
 
-    $spacing: 40px;
+    $spacing: $KANBAN_LIST_SPACING;
 
     height: 100%;
     white-space: nowrap;

@@ -1,8 +1,9 @@
-@import "~shared/_mixins.scss";
+@import "~shared/_mixins";
+@import "~shared/_theme";
 
 #kanban-container {
     @include flex-container-vertical;
 
     height: 100%;
-    background-color: rgb(103,123,209);
+    background-color: $KANBAN_BACKGROUND;
 }
