@@ -5,22 +5,9 @@
 -->
 <template>
     <main id="kanban-board">
-        <kanban-list header="Para executar"></kanban-list>
-        <kanban-list header="Em andamento"></kanban-list>
-        <kanban-list header="Finalizado"></kanban-list>
-        <!--        
-        <div class="list-wrapper">
-            <div class="list-container">
-                <header class="list-header">Column 2</header>
-                <section>
-                    <p>abc</p>
-                    <p>abc</p>
-                    <p>abc</p>
-                </section>
-                <footer class="list-footer">foot</footer>
-            </div>
-        </div>
-        -->
+        <kanban-list header="Para executar" :cards="todo"></kanban-list>
+        <kanban-list header="Em andamento" :cards="doing"></kanban-list>
+        <kanban-list header="Finalizado" :cards="done"></kanban-list>
     </main>
 </template>
 
@@ -28,6 +15,44 @@
 import KanbanList from './kanban-list.vue'
 
 export default {
+    data() {
+        return {
+            todo: [
+                "do thing 1", 
+                "do thing 2",
+                "thing things",
+                "thing things",
+                "thing things",
+                "thing things",
+                "thing things",
+                "thing things",
+                "thing things",
+                "thing things",
+                "thing test thing",
+                "thing test thing",
+                "thing test thing",
+                "thing test thing",
+                "thing test thing",
+                "thing test thing",
+                "thing test thing",
+                "thing test thing",
+                "thing test thing",
+                "thing test thing",
+                "thing things",
+                "thing things",
+                "thing things",
+                "thing things",
+                "thing things",
+                "a longer thing to see how this thing draws in the thing"
+            ],
+            doing: [
+                "a thing"
+            ],
+            done: [
+                "first thing"
+            ]
+        }
+    },
     components: {
         KanbanList
     }
