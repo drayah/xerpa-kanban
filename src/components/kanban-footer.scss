@@ -1,4 +1,4 @@
-@import "~shared/_mixins.scss";
+@import "~shared/_mixins";
 
 #kanban-footer {
     @include flex-container-horizontal;

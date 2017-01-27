@@ -1,4 +1,5 @@
-@import "~shared/_mixins.scss";
+@import "~shared/_mixins";
+@import "~shared/_theme";
 
 div.list-wrapper {
     $spacing: 40px;
