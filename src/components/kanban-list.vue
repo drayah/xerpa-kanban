@@ -8,26 +8,13 @@
         <div class="list-container">
             <header class="list-header">{{header}}</header>
             <section>
-                    test
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
-                    <p>section bla bla</p>
+                <ul class="cards">
+                    <li class="card" v-for="card in cards">{{card}}</li>
+                </ul>
+                <!--
+                <kanban-card text="some example text"></kanban-card>
+                <kanban-card text="some example text"></kanban-card>
+                -->
             </section>
             <footer class="list-footer">
                 <button>Adicionar...</button>
@@ -38,7 +25,7 @@
 
 <script>
 export default {
-    props: ['header']
+    props: ['header', 'cards']
 }
 </script>
 
