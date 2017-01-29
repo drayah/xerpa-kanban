@@ -3,14 +3,14 @@
  */
 
 /*
- * debug 
+ * debug
  */
 @mixin debug($color: red, $size: 1px) {
     border: $size solid $color !important;
 }
 
 /*
- * media queries 
+ * media queries
  */
 @mixin larger-than-mobile {
     @media (min-width: 640px) {

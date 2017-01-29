@@ -9,11 +9,19 @@
             <header class="list-header">{{header}}</header>
             <section>
                 <ul class="cards">
-                    <li class="card" v-for="card in cards">{{card}}</li>
+                    <kanban-card :card="card" v-for="(card, index) in cardList"></kanban-card>
                 </ul>
-                <!--
-                <kanban-card text="some example text"></kanban-card>
-                <kanban-card text="some example text"></kanban-card>
+                <!--                
+                <ul class="cards">
+                    <li @dragenter="toggleBorder" 
+                        @dragleave="toggleBorder" 
+                        :data-index="index" 
+                        draggable="true" 
+                        class="card" 
+                        v-for="(card, index) in enhancedCards">
+                        {{card.text}}
+                    </li>
+                </ul>
                 -->
             </section>
             <footer class="list-footer">
@@ -24,8 +32,32 @@
 </template>
 
 <script>
+import KanbanCard from './kanban-card.vue'
+
 export default {
-    props: ['header', 'cards']
+    props: ['header', 'cards'],
+    computed: {
+        cardList() {
+            let dropTarget = {
+                type: "droppable",
+                text: ""
+            }
+
+            let cards = this.cards.reduce((accumulator, current) => {
+                accumulator.push(dropTarget, {type: "card", text: current})
+                return accumulator
+            }, [])
+
+            cards.push(dropTarget)
+            return cards
+        }
+    },
+    created() {
+        console.log(this.enhancedCards)
+    },
+    components: {
+        KanbanCard
+    }
 }
 </script>
 

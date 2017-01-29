@@ -80,30 +80,6 @@ div.list-wrapper {
                 padding: {
                     left: 20px;
                     right: 20px;
-                    top: 5px;
-                    bottom: 5px;
-                }
-
-                li.card {
-                    @include disable-selection-appearance;
-                    @include radius;
-
-                    padding: 15px;
-                    white-space: normal;
-                    list-style-type: none;
-                    color: $KANBAN_LIST_TEXT_COLOR;
-                    background-color: white;
-                    cursor: pointer;
-                    box-shadow: 0px 1px 3px rgba(100,100,100,.25);
-
-                    font: {
-                        size: 16px;
-                        weight: 300;
-                    }
-
-                    &:not(:last-child) {
-                        margin-bottom: 15px;
-                    }
                 }
             }
         }
