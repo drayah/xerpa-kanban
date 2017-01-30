@@ -13,15 +13,18 @@ const KANBAN_DONE   = "_KANBAN_DONE"
 
 const add = (list, text, index) => {
     list.cards.splice(index, 0, text)
-    console.log(`card added at position ${index}`)
 }
 
 const remove = (list, index) => {
     list.cards.splice(index, 1)
 }
 
+const listForId = (state, listId) => {
+    return state.board.find(l => l.id === listId)
+}
+
 const listForCard = (state, card) => {
-    return state.board.find(l => l.id === card.listId)
+    return listForId(state, card.listId)
 }
 
 const store = new Vuex.Store({
@@ -72,6 +75,10 @@ const store = new Vuex.Store({
         ]
     },
     mutations: {
+        add(state, payload) {
+            let list = listForId(state, payload.id)
+            add(list, payload.text, list.cards.length)
+        },
         delete(state, payload) {
             let card = payload.card
             remove(listForCard(state, card), card.index)
