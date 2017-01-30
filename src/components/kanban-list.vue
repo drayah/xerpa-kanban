@@ -11,7 +11,7 @@
             </header>
             <section>
                 <ul class="cards">
-                    <kanban-card :card="card" v-for="(card, index) in cardList"></kanban-card>
+                    <kanban-card :card="card" v-for="card in cardList"></kanban-card>
                 </ul>
             </section>
             <footer class="list-footer">
@@ -24,6 +24,15 @@
 <script>
 import KanbanCard from './kanban-card.vue'
 
+const createListItem = (type, listId, cardText, cardIndex) => {
+    return {
+        type: type,
+        listId: listId,
+        text: cardText,
+        index: cardIndex
+    }
+}
+
 export default {
     props: ['list'],
     computed: {
@@ -31,17 +40,15 @@ export default {
             return this.list.header
         },
         cardList() {
-            let dropTarget = {
-                type: "droppable",
-                text: ""
-            }
-
-            let cards = this.list.cards.reduce((accumulator, current) => {
-                accumulator.push(dropTarget, {type: "card", text: current})
+            let cards = this.list.cards.reduce((accumulator, current, index) => {
+                accumulator.push(
+                    createListItem("droppable", this.list.id, "", index), 
+                    createListItem("card", this.list.id, current, index)
+                )
                 return accumulator
             }, [])
-
-            cards.push(dropTarget)
+            
+            cards.push(createListItem("droppable", this.list.id, "", this.list.cards.length))
             return cards
         }
     },

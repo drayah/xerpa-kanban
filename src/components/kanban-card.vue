@@ -6,7 +6,7 @@
 <template>
     <li v-if="isCard(card)" 
         draggable="true" 
-        @dragstart="dragStart(card, $event)"
+        @dragstart="drag(card, $event)"
         class="card">
         {{card.text}}
     </li>
@@ -31,7 +31,7 @@ export default {
             let element = event.target
             element.classList.toggle('target')
         },
-        dragStart(card, event) {
+        drag(card, event) {
             let element = event.target
             draggingCard = card
             event.dataTransfer.effectAllowed = 'move'
@@ -41,7 +41,11 @@ export default {
             let element = event.target
             element.classList.remove('target')
 
-            console.log(draggingCard)
+            //update store
+            this.$store.commit('move', {
+                from: draggingCard,
+                to: card
+            })
         }
     }
 }

@@ -7,11 +7,15 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const KANBAN_TODO   = "_KANBAN_TODO"
+const KANBAN_DOING  = "_KANBAN_DOING"
+const KANBAN_DONE   = "_KANBAN_DONE" 
+
 const store = new Vuex.Store({
     state: {
-        board: {
-            todo: {
-                id: 1,
+        board: [
+            {
+                id: KANBAN_TODO,
                 header: "Para executar",
                 cards: [
                     "do thing 1", 
@@ -42,19 +46,48 @@ const store = new Vuex.Store({
                     "a longer thing to see how this thing draws in the thing"
                 ]
             },
-            doing: {
-                id: 2,
+            {
+                id: KANBAN_DOING,
                 header: "Em andamento",
                 cards: ["a longer description to test line breakage in this card"]
             },
-            done: {
-                id: 3,
+            {
+                id: KANBAN_DONE,
                 header: "Finalizado",
                 cards: ["e", "f"]
             }
-        }
+        ]
     },
-    mutations: {}
+    mutations: {
+        move(state, payload) {
+            let source = payload.from
+            let destination = payload.to
+
+            let listForCard = (card) => {
+                return state.board.find(l => l.id === card.listId)
+            }
+
+            let remove = (list, index) => {
+                list.cards.splice(index, 1)
+            }
+
+            let add = (list, text, index) => {
+                list.cards.splice(index, 0, text)
+            }
+
+            if (source.listId !== destination.listId) {
+                //moving between differing lists
+                remove(listForCard(source), source.index)
+                add(listForCard(destination), source.text, destination.index)
+            }
+            else {
+                //moving within single list
+                let destinationIndex = destination.index - 1 < 0 ? 0 : destination.index
+                remove(listForCard(source), source.index)
+                add(listForCard(destination), source.text, destinationIndex)
+            }
+        }
+    }
 })
 
 export default store

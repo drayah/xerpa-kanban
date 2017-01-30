@@ -17,13 +17,13 @@ import KanbanList from './kanban-list.vue'
 export default {
     computed: {
         todo() {
-            return this.$store.state.board.todo
+            return this.$store.state.board[0]
         },
         doing() {
-            return this.$store.state.board.doing
+            return this.$store.state.board[1]
         },
         done() {
-            return this.$store.state.board.done
+            return this.$store.state.board[2]
         }
     },
     components: {
