@@ -11,6 +11,18 @@ const KANBAN_TODO   = "_KANBAN_TODO"
 const KANBAN_DOING  = "_KANBAN_DOING"
 const KANBAN_DONE   = "_KANBAN_DONE" 
 
+const add = (list, text, index) => {
+    list.cards.splice(index, 0, text)
+}
+
+const remove = (list, index) => {
+    list.cards.splice(index, 1)
+}
+
+const listForCard = (state, card) => {
+    return state.board.find(l => l.id === card.listId)
+}
+
 const store = new Vuex.Store({
     state: {
         board: [
@@ -59,33 +71,25 @@ const store = new Vuex.Store({
         ]
     },
     mutations: {
+        delete(state, payload) {
+            let card = payload.card
+            remove(listForCard(state, card), card.index)
+        },
         move(state, payload) {
             let source = payload.from
             let destination = payload.to
 
-            let listForCard = (card) => {
-                return state.board.find(l => l.id === card.listId)
-            }
-
-            let remove = (list, index) => {
-                list.cards.splice(index, 1)
-            }
-
-            let add = (list, text, index) => {
-                list.cards.splice(index, 0, text)
-            }
-
             if (source.listId !== destination.listId) {
                 //moving between differing lists
-                remove(listForCard(source), source.index)
-                add(listForCard(destination), source.text, destination.index)
+                remove(listForCard(state, source), source.index)
+                add(listForCard(state, destination), source.text, destination.index)
             }
             else {
                 //moving within a single list
                 if (source.index !== destination.index) {
                     let destinationIndex = destination.index - 1 < 0 ? 0 : destination.index - 1
-                    remove(listForCard(source), source.index)
-                    add(listForCard(destination), source.text, destinationIndex)
+                    remove(listForCard(state, source), source.index)
+                    add(listForCard(state, destination), source.text, destinationIndex)
                 }
             }
         }
