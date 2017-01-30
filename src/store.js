@@ -13,6 +13,7 @@ const KANBAN_DONE   = "_KANBAN_DONE"
 
 const add = (list, text, index) => {
     list.cards.splice(index, 0, text)
+    console.log(`card added at position ${index}`)
 }
 
 const remove = (list, index) => {
@@ -88,6 +89,11 @@ const store = new Vuex.Store({
                 //moving within a single list
                 if (source.index !== destination.index) {
                     let destinationIndex = destination.index - 1 < 0 ? 0 : destination.index - 1
+
+                    if (source.index > destination.index && destination.index > 0) {
+                        destinationIndex += 1
+                    }
+
                     remove(listForCard(state, source), source.index)
                     add(listForCard(state, destination), source.text, destinationIndex)
                 }
