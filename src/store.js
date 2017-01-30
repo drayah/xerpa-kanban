@@ -81,7 +81,7 @@ const store = new Vuex.Store({
                 add(listForCard(destination), source.text, destination.index)
             }
             else {
-                //moving within single list
+                //moving within a single list
                 if (source.index !== destination.index) {
                     let destinationIndex = destination.index - 1 < 0 ? 0 : destination.index - 1
                     remove(listForCard(source), source.index)
