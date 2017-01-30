@@ -7,8 +7,13 @@
     <li v-if="isCard(card)" 
         draggable="true" 
         @dragstart="drag(card, $event)"
+        @click="setDeleting"
         class="card">
         {{card.text}}
+        <div @click.stop="stopDeleting" v-show="isDeleting" class="delete-container">
+            <div @click.stop="stopDeleting" class="action">Cancelar</div>
+            <div @click.stop="confirmDelete(card)" class="action delete">Excluir Item</div>
+        </div>
     </li>
     <li v-else
         @dragenter="toggleBorder"
@@ -22,10 +27,29 @@
 let draggingCard = undefined
 
 export default {
-    props: ['card'],
+    data() {
+        return {
+            isDeleting: this.deleting
+        }
+    },
+    props: ['card', 'deleting'],
     methods: {
         isCard(card) {
             return card.type === "card"
+        },
+        setDeleting() {
+            this.isDeleting = true
+        },
+        stopDeleting() {
+            this.isDeleting = false
+        },
+        confirmDelete(card) {
+            this.stopDeleting()
+
+            //update store
+            this.$store.commit('delete', {
+                card: card
+            })
         },
         toggleBorder(event) {
             let element = event.target
@@ -34,6 +58,7 @@ export default {
         drag(card, event) {
             let element = event.target
             draggingCard = card
+            this.stopDeleting()
             event.dataTransfer.effectAllowed = 'move'
             event.dataTransfer.setData('text/plain', element.innerText)
         },

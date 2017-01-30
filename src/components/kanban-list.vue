@@ -11,7 +11,7 @@
             </header>
             <section>
                 <ul class="cards">
-                    <kanban-card :card="card" v-for="card in cardList"></kanban-card>
+                    <kanban-card :card="card" :deleting="card.deleting" v-for="card in cardList"></kanban-card>
                 </ul>
             </section>
             <footer class="list-footer">
@@ -29,7 +29,8 @@ const createListItem = (type, listId, cardText, cardIndex) => {
         type: type,
         listId: listId,
         text: cardText,
-        index: cardIndex
+        index: cardIndex,
+        deleting: false
     }
 }
 
