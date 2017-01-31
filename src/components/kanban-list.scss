@@ -89,6 +89,7 @@ div.list-wrapper {
 
                 div.add-card {
                     outline: none;
+                    border: 1px solid $KANBAN_BACKGROUND;
                     border-radius: 4px;
                     display: block;
                     list-style-type: none;
