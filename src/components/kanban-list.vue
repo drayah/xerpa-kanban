@@ -9,13 +9,14 @@
             <header class="list-header">
                 {{header}}
             </header>
-            <section>
+            <section ref="listSection">
                 <ul class="cards">
                     <kanban-card :card="card" :deleting="card.deleting" v-for="card in cardList"></kanban-card>
+                    <div ref="editableCard" @keyup="changeEditable" v-show="showEditableCard" @keydown.enter.prevent="addCard" class="add-card" contenteditable="true"></div>
                 </ul>
             </section>
             <footer class="list-footer">
-                <button>Adicionar...</button>
+                <button @click="toggleEditableCard">Adicionar...</button>
             </footer>
         </div>
     </div>
@@ -35,6 +36,12 @@ const createListItem = (type, listId, cardText, cardIndex) => {
 }
 
 export default {
+    data() {
+        return {
+            editableText: "",
+            showEditableCard: false
+        }
+    },
     props: ['list'],
     computed: {
         header() {
@@ -51,6 +58,41 @@ export default {
             
             cards.push(createListItem("droppable", this.list.id, "", this.list.cards.length))
             return cards
+        }
+    },
+    methods: {
+        toggleEditableCard() {
+            this.showEditableCard = !this.showEditableCard
+
+            //scroll list container down
+            //and focus editableCard
+            //after DOM update, because we
+            //need to wait until the editableCard
+            //gets shown
+            this.$nextTick(() => {
+                let editable = this.$refs.editableCard
+                let section = this.$refs.listSection
+                section.scrollTop = section.scrollHeight
+                editable.innerText = ""
+                editable.focus()
+            })
+        },
+        changeEditable(event) {
+            let element = event.target
+            this.editableText = event.target.innerText
+        },
+        addCard() {
+            let text = this.editableText.trim()
+
+            if (text.length > 0) {
+                this.toggleEditableCard()
+
+                //update store
+                this.$store.commit('add', {
+                    id: this.list.id,
+                    text: text
+                })
+            }
         }
     },
     components: {

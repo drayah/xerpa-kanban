@@ -81,6 +81,24 @@ div.list-wrapper {
                     left: 20px;
                     right: 20px;
                 }
+
+                div.add-card {
+                    outline: none;
+                    border-radius: 4px;
+                    display: block;
+                    list-style-type: none;
+                    white-space: normal;
+                    padding: 15px;
+                    color: $KANBAN_LIST_TEXT_COLOR;
+                    background-color: white;
+                    box-shadow: 0px 1px 3px rgba(100,100,100,.25);
+                    margin-bottom: 15px;
+
+                    font: {
+                        size: 16px;
+                        weight: 300;
+                    }
+                }
             }
         }
     }
