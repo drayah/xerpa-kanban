@@ -20,6 +20,10 @@ const remove = (list, index) => {
     list.cards.splice(index, 1)
 }
 
+const hasCardForIndex = (list, index) => {
+    return list.cards[index] !== undefined
+}
+
 const listForId = (state, listId) => {
     return state.board.find(l => l.id === listId)
 }
@@ -28,69 +32,95 @@ const listForCard = (state, card) => {
     return listForId(state, card.listId)
 }
 
-const store = new Vuex.Store({
-    state: {
-        board: [
-            {
-                id: KANBAN_TODO,
-                header: "Para executar",
-                cards: [
-                    "Trabalhar na Xerpa", 
-                ]
-            },
-            {
-                id: KANBAN_DOING,
-                header: "Em andamento",
-                cards: [
-                    "Terminar Living Clojure",
-                    "Terminar Clojure for the Brave and True"
-                ]
-            },
-            {
-                id: KANBAN_DONE,
-                header: "Finalizado",
-                cards: [
-                    "Teste de Xerpa"
-                ]
-            }
-        ]
-    },
-    mutations: {
-        add(state, payload) {
+const state = {
+    board: [
+        {
+            id: KANBAN_TODO,
+            header: "Para executar",
+            cards: [
+                "Trabalhar na Xerpa", 
+            ]
+        },
+        {
+            id: KANBAN_DOING,
+            header: "Em andamento",
+            cards: [
+                "Terminar Living Clojure",
+                "Terminar Clojure for the Brave and True"
+            ]
+        },
+        {
+            id: KANBAN_DONE,
+            header: "Finalizado",
+            cards: [
+                "Teste de Xerpa"
+            ]
+        }
+    ]
+}
+
+export const mutations = {
+    add: (state, payload) => {
+        if (payload) {
             let list = listForId(state, payload.id)
-            add(list, payload.text, list.cards.length)
-        },
-        delete(state, payload) {
+
+            if (list) {
+                add(list, payload.text, list.cards.length)
+            }
+        }
+    },
+
+    delete: (state, payload) => {
+        if (payload) {
             let card = payload.card
-            remove(listForCard(state, card), card.index)
-        },
-        move(state, payload) {
+            let list = listForCard(state, card)
+    
+            if (list) {
+                remove(list, card.index)
+            }
+        }
+    },
+
+    move: (state, payload) => {
+        if (payload) {
             let source = payload.from
             let destination = payload.to
-
+    
             if (source.listId !== destination.listId) {
                 //moving between differing lists
-                remove(listForCard(state, source), source.index)
-                add(listForCard(state, destination), source.text, destination.index)
+                let sourceList = listForCard(state, source)
+
+                if (hasCardForIndex(sourceList, source.index)) {
+                    remove(sourceList, source.index)
+                    add(listForCard(state, destination), source.text, destination.index)
+                }
             }
             else {
                 //moving within a single list
                 if (source.index !== destination.index) {
+                    let sourceList = listForCard(state, source)
                     let destinationIndex = destination.index - 1 < 0 ? 0 : destination.index - 1
-
+    
                     if (source.index > destination.index && destination.index > 0) {
                         destinationIndex += 1
                     }
-
-                    remove(listForCard(state, source), source.index)
-                    add(listForCard(state, destination), source.text, destinationIndex)
+    
+                    if (hasCardForIndex(sourceList, source.index)) {
+                        remove(sourceList, source.index)
+                        add(listForCard(state, destination), source.text, destinationIndex)
+                    }
                 }
             }
         }
-    },
+    }
+}
+
+const store = new Vuex.Store({
+    state,
+    mutations,
     plugins: [
         createPersistedState({
-            key: "kanban-store"
+            key: "xerpa-kanban-store"
         })
     ]
 })
