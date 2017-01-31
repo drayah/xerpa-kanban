@@ -4,6 +4,7 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -34,43 +35,23 @@ const store = new Vuex.Store({
                 id: KANBAN_TODO,
                 header: "Para executar",
                 cards: [
-                    "do thing 1", 
-                    "do thing 2",
-                    "thing a",
-                    "thing b",
-                    "thing c",
-                    "thing d",
-                    "thing e",
-                    "thing things 1",
-                    "thing things 2",
-                    "thing things 3",
-                    "thing test thing a",
-                    "thing test thing b",
-                    "thing test thing c",
-                    "thing test thing d",
-                    "thing test thing e",
-                    "thing test thing f",
-                    "thing test thing g",
-                    "thing test thing h",
-                    "thing test thing i",
-                    "thing test thing j",
-                    "thing things a",
-                    "thing things b",
-                    "thing things c",
-                    "thing things d",
-                    "thing things e",
-                    "a longer thing to see how this thing draws in the thing"
+                    "Trabalhar na Xerpa", 
                 ]
             },
             {
                 id: KANBAN_DOING,
                 header: "Em andamento",
-                cards: ["a longer description to test line breakage in this card"]
+                cards: [
+                    "Terminar Living Clojure",
+                    "Terminar Clojure for the Brave and True"
+                ]
             },
             {
                 id: KANBAN_DONE,
                 header: "Finalizado",
-                cards: ["e", "f"]
+                cards: [
+                    "Teste de Xerpa"
+                ]
             }
         ]
     },
@@ -106,7 +87,12 @@ const store = new Vuex.Store({
                 }
             }
         }
-    }
+    },
+    plugins: [
+        createPersistedState({
+            key: "kanban-store"
+        })
+    ]
 })
 
 export default store
