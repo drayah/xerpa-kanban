@@ -15,6 +15,7 @@ module.exports = function(config) {
         frameworks: ['jasmine', 'sinon-stub-promise', 'sinon-chai', 'chai'],
         reporters: ['spec'],
         files: [
+            '../node_modules/es6-promise/dist/es6-promise.auto.js',
             './**/*.spec.js',
         ],
         preprocessors: {
