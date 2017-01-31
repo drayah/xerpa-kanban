@@ -11,11 +11,10 @@ delete webpackConfig.entry
 module.exports = function(config) {
     config.set({
         basePath: './',
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
         frameworks: ['jasmine', 'sinon-stub-promise', 'sinon-chai', 'chai'],
         reporters: ['spec'],
         files: [
-            '../node_modules/es6-promise/dist/es6-promise.auto.js',
             './**/*.spec.js',
         ],
         preprocessors: {
