@@ -168,6 +168,7 @@ describe("KanbanList", () => {
         expect(vm.editableText).to.equal("")
 
         vm.changeEditable({
+            //mock event
             target: {
                 innerText: "mocked element text"
             }
@@ -176,7 +177,7 @@ describe("KanbanList", () => {
         expect(vm.editableText).to.equal("mocked element text")
     })
 
-    it("should a new card to the list of cards", () => {
+    it("should a new card to the store", () => {
         let spy = sinon.spy()
         store.commit = spy
 

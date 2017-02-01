@@ -35,7 +35,12 @@ export default {
     props: ['card', 'deleting'],
     methods: {
         isCard(card) {
-            return card.type === "card"
+            if (card) {
+                return card.type === "card"
+            }
+            else {
+                return false
+            }
         },
         setDeleting() {
             this.isDeleting = true
