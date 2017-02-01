@@ -69,7 +69,6 @@ export const mutations = {
             }
         }
     },
-
     delete: (state, payload) => {
         if (payload) {
             let card = payload.card
@@ -80,7 +79,6 @@ export const mutations = {
             }
         }
     },
-
     move: (state, payload) => {
         if (payload) {
             let source = payload.from
