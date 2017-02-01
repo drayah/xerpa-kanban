@@ -68,4 +68,4 @@ deletion state enabled. This should be improved.
 
 Add the ability to edit existing cards.
 
-Evaluate nightwatch.js for use with automated testing inside the browser.
+Evaluate Nightwatch.js for use with automated testing inside the browser.
