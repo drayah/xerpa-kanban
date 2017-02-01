@@ -177,7 +177,7 @@ describe("KanbanList", () => {
         expect(vm.editableText).to.equal("mocked element text")
     })
 
-    it("should a new card to the store", () => {
+    it("should add a new card to the store", () => {
         let spy = sinon.spy()
         store.commit = spy
 
