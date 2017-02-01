@@ -15,7 +15,7 @@ In order to build, test and run the project make sure you have the following too
 ## Build Setup
 
 ``` bash
-# make sure to you have all project dependencies installed
+# make sure you have all project dependencies installed
 npm install
 
 # run tests
@@ -47,14 +47,14 @@ The board functions as a container and groups three
 separate KanbanList components together. 
 The lists function as todo, doing and done lists.
 
-* kanban-list
+* kanban-list  
 The list deals with showing a list of KanbanCard components and
 enables the user to add new cards to itself.
 
-* kanban-card
+* kanban-card  
 The card is a draggable component that can be moved within a list
 and between different lists. You can delete a card by clicking on it 
-in order to show the card actions.
+in order to show the card's actions.
 
 ## Improvements
 
@@ -63,6 +63,9 @@ Evaluate a move to a custom drag and drop implementation in order to function
 more like trello.
 
 The deletion state for cards is buggy when more than one card has its state set 
-for deletion. This should be improved.
+for deletion and when moving a card to a list containing cards that have their
+deletion state enabled. This should be improved.
+
+Add the ability to edit existing cards.
 
 Evaluate nightwatch.js for use with automated testing inside the browser.
