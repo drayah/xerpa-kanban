@@ -86,6 +86,7 @@ export default {
 
             if (text.length > 0) {
                 this.toggleEditableCard()
+                this.editableText = ""
 
                 //update store
                 this.$store.commit('add', {
