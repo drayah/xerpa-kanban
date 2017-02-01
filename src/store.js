@@ -37,24 +37,17 @@ const state = {
         {
             id: KANBAN_TODO,
             header: "Para executar",
-            cards: [
-                "Trabalhar na Xerpa", 
-            ]
+            cards: []
         },
         {
             id: KANBAN_DOING,
             header: "Em andamento",
-            cards: [
-                "Terminar Living Clojure",
-                "Terminar Clojure for the Brave and True"
-            ]
+            cards: []
         },
         {
             id: KANBAN_DONE,
             header: "Finalizado",
-            cards: [
-                "Teste de Xerpa"
-            ]
+            cards: []
         }
     ]
 }
